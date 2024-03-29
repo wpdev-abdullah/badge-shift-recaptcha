@@ -2,7 +2,7 @@
 /*
  * Plugin Name: BadgeShift for ReCAPTCHA
  * Description: BadgeShift for ReCAPTCHA will <strong>move the Google reCAPTCHA v3 badge to the left side.</strong> Just install and it's done. The plugin is super lightweight so adding it will not slow down your website.
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: WpConsults LLC
  * Author URI: https://www.wpconsults.com/
  * License: GPLv2 or later
@@ -10,14 +10,28 @@
  */
 
 
-// Enqueue custom CSS
-/*function badge_shift_enqueue_styles() {
-    $plugin_version = '1.0.0'; // Set your plugin version here
+/// Enqueue custom CSS with dynamic values
+function badge_shift_enqueue_styles() {
+	$plugin_version = '1.0.0'; // Set your plugin version here
+	    wp_enqueue_style( 'badge-shift-recaptcha-css', plugins_url( 'badge-shift-recaptcha.css', __FILE__ ), array(), $plugin_version );
 
-    wp_enqueue_style( 'badge-shift-recaptcha-css', plugins_url( 'badge-shift-recaptcha.css', __FILE__ ), array(), $plugin_version );
+    $left_position = get_option( 'badge_shift_left_position', '-2px' );
+    $bottom_position = get_option( 'badge_shift_bottom_position', '20px' );
+    $z_index = get_option( 'badge_shift_z_index', '9999' ); // Default z-index value
+	
+
+    $custom_css = "
+        .grecaptcha-badge {
+            left: {$left_position} !important;
+            bottom: {$bottom_position} !important;
+            z-index: {$z_index} !important;
+        }
+    ";
+
+    wp_add_inline_style( 'badge-shift-recaptcha-css', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'badge_shift_enqueue_styles' );
-*/
+
 
 // Add settings page
 function badge_shift_settings_page() {
@@ -76,21 +90,4 @@ function badge_shift_settings_page_content() {
 
 
 
-/// Enqueue custom CSS with dynamic values
-function badge_shift_enqueue_styles() {
-    $left_position = get_option( 'badge_shift_left_position', '-2px' );
-    $bottom_position = get_option( 'badge_shift_bottom_position', '20px' );
-    $z_index = get_option( 'badge_shift_z_index', '9999' ); // Default z-index value
-
-    $custom_css = "
-        .grecaptcha-badge {
-            left: {$left_position} !important;
-            bottom: {$bottom_position} !important;
-            z-index: {$z_index} !important;
-        }
-    ";
-
-    wp_add_inline_style( 'badge-shift-recaptcha-css', $custom_css );
-}
-add_action( 'wp_enqueue_scripts', 'badge_shift_enqueue_styles' );
 

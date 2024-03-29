@@ -1,0 +1,12 @@
+/* Move Google reCAPTCHA v3 badge From Right to Left Side */
+/*This CSS will applied globally, meaning it will affect all pages and components of your WordPress site. SO where ever the captcha badge is ait will apply to it autometically */
+
+.grecaptcha-badge {
+    width: 70px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+}
+
+.grecaptcha-badge:hover {
+    width: 256px !important;
+}

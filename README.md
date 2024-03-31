@@ -31,6 +31,9 @@ You can adjust the position of the reCAPTCHA badge by navigating to the 'BadgeSh
 
 Yes, you can revert to the default badge position by resetting the CSS values on the 'BadgeShift Settings' page.
 
+### Do you have any step by step guide
+Yes; I have written an article for my reader at [WpConsults](https://www.wpconsults.com/) you can access it here [How to Hide reCAPTCHA Badge from WordPress Website](https://www.wpconsults.com/hide-recaptcha-badge/)
+
 ## License
 
 This project is licensed under the GPLv2 or later (https://www.gnu.org/licenses/gpl-2.0.html) license.
